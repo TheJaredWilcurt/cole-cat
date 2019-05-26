@@ -1,0 +1,12 @@
+{
+  "name": "cole-cat",
+  "version": "1.0.0",
+  "description": "Art Gallery",
+  "scripts": {
+    "start": "node node_modules/npm-free-server/dist/server.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "npm-free-server": "^1.1.0"
+  }
+}
