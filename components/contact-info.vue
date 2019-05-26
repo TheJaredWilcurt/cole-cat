@@ -47,7 +47,7 @@ module.exports = {
   name: 'contact-info',
   data: function () {
     return {
-      photo: '/cole.jpg',
+      photo: 'cole.jpg',
       caption: 'Cole Catherine',
       email: 'username@site.com',
       phone: '1-800-123-4567',
