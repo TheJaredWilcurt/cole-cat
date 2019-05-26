@@ -31,6 +31,7 @@
             <span v-else>{{ link.name }}</span>
           </li>
         </ul>
+        <style-swapper></style-swapper>
       </div>
 
       <div class="d-none d-md-block col-md-6 text-right">
@@ -45,6 +46,9 @@
 <script>
 module.exports = {
   name: 'contact-info',
+  components: {
+    'style-swapper': httpVueLoader('components/style-swapper.vue')
+  },
   data: function () {
     return {
       photo: 'cole.jpg',

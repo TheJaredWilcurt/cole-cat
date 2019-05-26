@@ -4,6 +4,7 @@
     <title>Cole-Catherine - Art Gallery</title>
     <style>
       body {
+        padding-top: 100px;
         padding-bottom: 100px;
       }
       [v-cloak] {
@@ -14,15 +15,16 @@
         max-height: 200px;
       }
     </style>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css" />
+    <!--
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css" />
+    -->
     <link rel="stylesheet" href="https://unpkg.com/vue-my-photos/dist/lightbox.css" />
   </head>
   <body>
 
     <div id="app" v-cloak>
       <bs-header></bs-header>
-      <div class="spacer">&nbsp;</div>
-      <div class="container mt-5">
+      <div class="container">
         <image-gallery :load-data="false"></image-gallery>
         <contact-info></contact-info>
       </div>

@@ -1,6 +1,6 @@
 <template>
-  <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary" bis_skin_checked="1">
-    <div class="container" bis_skin_checked="1">
+  <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+    <div class="container">
       <a href="/#" class="navbar-brand">Cole-Catherine Williams</a>
       <button
         class="navbar-toggler"
@@ -17,7 +17,6 @@
       <div
         :class="{ 'show': showNav }"
         class="navbar-collapse collapse"
-        bis_skin_checked="1"
       >
         <ul class="navbar-nav">
           <li

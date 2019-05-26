@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mt-5 mb-5">Image Gallery</h1>
+    <h1 class="mb-5">Art Gallery</h1>
 
     <div class="text-center">
       <img
