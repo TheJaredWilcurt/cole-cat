@@ -51,8 +51,8 @@ module.exports = {
                                             'LIST_RENDERING',   // 'v-for item in items'
                                             'CONDITIONALS',     // 'v-if', 'v-else-if', 'v-else', 'v-show', 'v-cloak'
                                             'RENDER_MODIFIERS', // 'v-once', 'v-pre'
-                                            'BINDING',          // 'v-model', 'v-bind', ':property="foo"'
                                             'CONTENT',          // 'v-text', 'v-html'
+                                            'BINDING',          // 'v-model', 'v-bind', ':property="foo"'
                                             'DEFINITION',       // 'is'
                                             'GLOBAL',           // 'id'
                                             'OTHER_ATTR',       // 'customProp="foo"', 'class', 'type', 'value' etc
