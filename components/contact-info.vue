@@ -4,22 +4,37 @@
 
     <div class="row">
 
-      <div class="col-8">
+      <div class="d-block d-md-none col-12 text-center mb-3">
+        <img :src="photo" :alt="caption" />
+      </div>
+
+      <div class="col-12 col-md-6">
         <ul>
-          <li><strong>E-Mail:</strong> <a :href="'mailto:' + email">{{ email }}</a></li>
-          <li><strong>Phone:</strong> <a :href="'tel:' + phone">{{ phone }}</a></li>
+          <li>
+            <strong>E-Mail:</strong>
+            <a :href="'mailto:' + email">{{ email }}</a>
+          </li>
+          <li>
+            <strong>Phone:</strong>
+            <a :href="'tel:' + phone">{{ phone }}</a>
+          </li>
           <li
             v-for="(link, linkIndex) in links"
             :key="'link' + linkIndex"
           >
-            <a v-if="link.url" :href="link.url">{{ link.name }}</a>
+            <a
+              v-if="link.url"
+              v-text="link.name"
+              :href="link.url"
+              :target="link.external ? '_blank' : '_self'"
+            ></a>
             <span v-else>{{ link.name }}</span>
           </li>
         </ul>
       </div>
 
-      <div class="col-4">
-        <img src="/cole.jpg" alt="Cole Catherine" />
+      <div class="d-none d-md-block col-md-6 text-right">
+        <img :src="photo" :alt="caption" />
       </div>
 
     </div>
@@ -32,20 +47,25 @@ module.exports = {
   name: 'contact-info',
   data: function () {
     return {
+      photo: '/cole.jpg',
+      caption: 'Cole Catherine',
       email: 'username@site.com',
       phone: '1-800-123-4567',
       links: [
         {
           name: 'Instagram',
-          url: '#'
+          url: '#',
+          external: true
         },
         {
           name: 'Facebook',
-          url: '#'
+          url: '#',
+          external: true
         },
         {
           name: 'Twitter',
-          url: '#'
+          url: '#',
+          external: true
         }
       ]
     };

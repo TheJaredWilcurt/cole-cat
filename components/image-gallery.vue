@@ -2,14 +2,16 @@
   <div>
     <h1 class="mt-5 mb-5">Image Gallery</h1>
 
-    <img
-      v-for="(image, imageIndex) in images"
-      :key="'image' + imageIndex"
-      :src="image.name"
-      :alt="image.alt"
-      class="img-fluid img-thumbnail"
-      @click="showLightbox(image.name)"
-    />
+    <div class="text-center">
+      <img
+        v-for="(image, imageIndex) in images"
+        :key="'image' + imageIndex"
+        :src="image.name"
+        :alt="image.alt"
+        class="img-fluid img-thumbnail"
+        @click="showLightbox(image.name)"
+      />
+    </div>
 
     <lightbox :images="images" ref="lightbox"></lightbox>
   </div>

@@ -16,15 +16,26 @@
       </button>
       <div
         :class="{ 'show': showNav }"
-        class="collapse navbar-collapse"
+        class="navbar-collapse collapse"
         bis_skin_checked="1"
       >
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Instagram</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contact">Contact</a>
+          <li
+            v-for="(link, linkIndex) in links"
+            :key="'navLink' + linkIndex"
+            class="nav-item"
+          >
+            <a
+              v-if="link.url"
+              v-text="link.name"
+              :href="link.url"
+              :target="link.external ? '_blank' : '_self'"
+              class="nav-link"
+              @click="showNav = false"
+            ></a>
+            <span v-else class="nav-link">
+              {{ link.name }}
+            </span>
           </li>
         </ul>
       </div>
@@ -37,7 +48,18 @@ module.exports = {
   name: 'bs-header',
   data: function () {
     return {
-      showNav: true
+      showNav: false,
+      links: [
+        {
+          name: 'Instagram',
+          url: '#',
+          external: true
+        },
+        {
+          name: 'Contact',
+          url: '#contact'
+        }
+      ]
     };
   }
 };
