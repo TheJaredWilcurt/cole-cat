@@ -60,9 +60,9 @@ module.exports = {
       let images = [];
       for (let i = 0; i < 20; i++) {
         images.push({
-          name: 'gallery/heart.png',
-          alt: 'heart',
-          filter: 'all',
+          name: 'gallery/paintings/My_Golden_Heart.jpg',
+          alt: 'My Golden Heart',
+          filter: 'paintings',
           id: 'heart'
         });
       }
@@ -81,18 +81,27 @@ module.exports = {
       let images = [];
 
       this.imageFiles.forEach(function (file) {
-        // /gallery/Mr.Cool.jpg
+        // gallery/paintings/Mr._Cool.jpg
         let src = file.path;
-        // Mr.Cool.jpg
+        // Mr._Cool.jpg
         let filename = src.split('/')[src.split('/').length - 1];
-        // Mr.Cool
+        // Mr._Cool
         let alt = filename.split('.').slice(0, -1).join('.');
+        // Mr. Cool
+        alt = alt.split('_').join(' ');
+
+        let filter = 'all';
+        // gallery/paintings/Mr._Cool.jpg => ['gallery', 'paintings', 'Mr._Cool.jpg']
+        if (src.split('/').length > 2) {
+          // filter = 'paintings'
+          filter = src.split('/')[1];
+        }
 
         images.push({
           src: src,
           alt: alt,
-          filter: 'all',
-          id: alt
+          filter: filter,
+          id: src
         });
       });
 
@@ -114,8 +123,5 @@ module.exports = {
 }
 .lightbox {
   z-index: 1040;
-}
-.lightbox-caption {
-  display: none;
 }
 </style>
