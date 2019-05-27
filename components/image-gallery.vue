@@ -13,7 +13,7 @@
       />
     </div>
 
-    <lightbox :images="images" ref="lightbox"></lightbox>
+    <lightbox :images="images" :directory="''" ref="lightbox"></lightbox>
   </div>
 </template>
 
@@ -70,7 +70,7 @@ module.exports = {
     },
     imageFiles: function () {
       return this.allFiles.filter(function (file) {
-        return file.path.startsWith('gallery/');
+        return file.path.startsWith('gallery/') && file.path.includes('.');
       });
     },
     images: function () {
@@ -98,7 +98,7 @@ module.exports = {
         }
 
         images.push({
-          src: src,
+          name: src,
           alt: alt,
           filter: filter,
           id: src
