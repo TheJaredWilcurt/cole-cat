@@ -2,7 +2,7 @@
   <div>
     <bs-header></bs-header>
     <div class="container">
-      <image-gallery :load-data="false"></image-gallery>
+      <image-gallery :load-data="true"></image-gallery>
       <hr id="about" />
       <about-cole></about-cole>
       <hr id="contact" />
