@@ -10,25 +10,14 @@
       [v-cloak] {
         display: none;
       }
-      .img-thumbnail {
-        max-width: 200px;
-        max-height: 200px;
-      }
     </style>
     <!--
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/minty/bootstrap.min.css" />
     -->
     <link rel="stylesheet" href="https://unpkg.com/vue-my-photos/dist/lightbox.css" />
   </head>
-  <body>
-
-    <div id="app" v-cloak>
-      <bs-header></bs-header>
-      <div class="container">
-        <image-gallery :load-data="false"></image-gallery>
-        <contact-info></contact-info>
-      </div>
-    </div>
+  <body id="gallery">
+    <div id="app" v-cloak></div>
 
     <!-- Required for IE11 support for Axios -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/http-vue-loader@1.4.0/src/httpVueLoader.min.js"></script>

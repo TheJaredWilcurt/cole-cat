@@ -2,9 +2,8 @@ Vue.use(Lightbox);
 
 const app = new Vue({
   el: '#app',
+  template: '<app-composition></app-composition>',
   components: {
-    'bs-header': httpVueLoader('components/bs-header.vue'),
-    'image-gallery': httpVueLoader('components/image-gallery.vue'),
-    'contact-info': httpVueLoader('components/contact-info.vue')
+    'app-composition': httpVueLoader('components/app-composition.vue')
   }
 });

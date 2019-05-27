@@ -2,13 +2,13 @@
   <div>
     <h1 class="mb-5">Art Gallery</h1>
 
-    <div class="text-center">
+    <div class="d-flex flex-column justify-content-center align-items-center flex-sm-row justify-content-sm-between flex-wrap">
       <img
         v-for="(image, imageIndex) in images"
         :key="'image' + imageIndex"
         :src="image.name"
         :alt="image.alt"
-        class="img-fluid img-thumbnail"
+        class="img-fluid img-thumbnail mb-3"
         @click="showLightbox(image.name)"
       />
     </div>
@@ -107,7 +107,11 @@ module.exports = {
 };
 </script>
 
-<style>
+<style scoped>
+.img-thumbnail {
+  max-width: 200px;
+  max-height: 200px;
+}
 .lightbox {
   z-index: 1040;
 }
