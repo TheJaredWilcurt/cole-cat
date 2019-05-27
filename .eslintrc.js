@@ -45,7 +45,7 @@ module.exports = {
         'space-infix-ops':             ['error'],
         'spaced-comment':              ['error', 'always'],
         // Vue Linter Options
-        'vue/attribute-hyphenation':    ['error', 'never'],
+        'vue/attribute-hyphenation':    ['error', 'always'],
         'vue/attributes-order':         ['error', {
                                           'order': [
                                             'LIST_RENDERING',   // 'v-for item in items'
