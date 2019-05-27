@@ -41,18 +41,23 @@ module.exports = {
       phone: '1-317-874-5385',
       links: [
         {
-          name: 'Instagram',
-          url: '#',
+          name: 'Facebook',
+          url: 'https://www.facebook.com/hope.anne.jones',
           external: true
         },
         {
-          name: 'Facebook',
-          url: '#',
+          name: 'Google+',
+          url: 'https://plus.google.com/u/0/118221338592889901873',
+          external: true
+        },
+        {
+          name: 'Instagram',
+          url: 'https://www.instagram.com/explore/tags/colesheartart/',
           external: true
         },
         {
           name: 'Twitter',
-          url: '#',
+          url: 'https://twitter.com/search?q=ColesHeartArt',
           external: true
         }
       ]
