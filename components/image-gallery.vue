@@ -70,7 +70,11 @@ module.exports = {
     },
     imageFiles: function () {
       return this.allFiles.filter(function (file) {
-        return file.path.startsWith('gallery/') && file.path.includes('.');
+        return !!(
+          file.path.startsWith('gallery/') &&
+          file.path.includes('.') &&
+          !file.path.endsWith('.md')
+        );
       });
     },
     images: function () {
