@@ -1,7 +1,7 @@
 <template>
   <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
     <div class="container">
-      <a href="/#" class="navbar-brand">Cole-Catherine Williams</a>
+      <a href="/#" class="navbar-brand">Cole-Catherine</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -30,6 +30,7 @@
               :href="link.url"
               :target="link.external ? '_blank' : '_self'"
               class="nav-link"
+              data-scroll
               @click="showNav = false"
             ></a>
             <span v-else class="nav-link">
@@ -56,9 +57,12 @@ module.exports = {
       showNav: false,
       links: [
         {
-          name: 'Instagram',
-          url: '#',
-          external: true
+          name: 'Gallery',
+          url: '#gallery'
+        },
+        {
+          name: 'About',
+          url: '#about'
         },
         {
           name: 'Contact',
@@ -66,6 +70,21 @@ module.exports = {
         }
       ]
     };
+  },
+  created: function () {
+    const scroll = new SmoothScroll('a[href*="#"]', {
+      speed: 1000,
+      easing: 'easeOutCubic',
+      updateURL: true,
+      popstate: true
+    });
+
+    setTimeout(function () {
+      let hash = window.location.hash;
+      if (hash) {
+        scroll.animateScroll(document.querySelector(hash));
+      }
+    }, 350);
   }
 };
 </script>
