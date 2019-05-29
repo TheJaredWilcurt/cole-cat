@@ -46,11 +46,6 @@ module.exports = {
           external: true
         },
         {
-          name: 'Google+',
-          url: 'https://plus.google.com/u/0/118221338592889901873',
-          external: true
-        },
-        {
           name: 'Instagram',
           url: 'https://www.instagram.com/explore/tags/colesheartart/',
           external: true
