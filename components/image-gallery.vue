@@ -6,7 +6,7 @@
       <img
         v-for="(image, imageIndex) in images"
         :key="'image' + imageIndex"
-        :src="image.name"
+        :src="image.thumbnail || image.name"
         :alt="image.alt"
         class="img-fluid img-thumbnail mb-3"
         @click="showLightbox(image.name)"
@@ -94,6 +94,11 @@ module.exports = {
         // Mr. Cool
         alt = alt.split('_').join(' ');
 
+        // Don't add thumbnails to the list
+        if (alt.endsWith(' th')) {
+          return;
+        }
+
         let filter = 'all';
         // gallery/paintings/Mr._Cool.jpg => ['gallery', 'paintings', 'Mr._Cool.jpg']
         if (src.split('/').length > 2) {
@@ -101,8 +106,18 @@ module.exports = {
           filter = src.split('/')[1];
         }
 
+        let thumbnail = this.imageFiles.find(function (thumb) {
+          // Mr._Cool_th.jpg
+          let thumbFilename = thumb.path.split('/')[thumb.path.split('/').length - 1];
+          // Mr. Cool th
+          let thumbAlt = thumbFilename.split('.').slice(0, -1).join('.').split('_').join(' ');
+          // mr. cool th === mr. cool th
+          return thumbAlt.toLowerCase() === alt.toLowerCase() + ' th';
+        });
+
         images.push({
           name: src,
+          thumbnail: thumbnail,
           alt: alt,
           filter: filter,
           id: src
