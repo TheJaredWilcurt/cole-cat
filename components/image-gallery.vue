@@ -2,18 +2,39 @@
   <div>
     <h1 class="mb-5">Art Gallery</h1>
 
-    <div class="d-flex flex-column justify-content-center align-items-center flex-sm-row justify-content-sm-between flex-wrap">
-      <img
-        v-for="(image, imageIndex) in images"
-        :key="'image' + imageIndex"
-        :src="image.thumbnail || image.name"
-        :alt="image.alt"
-        class="img-fluid img-thumbnail mb-3"
-        @click="showLightbox(image.name)"
-      />
+
+    <div class="mb-4">
+      <strong>Categories:</strong>
+      <select v-model="selectedFilter">
+        <option value="all">All</option>
+        <option
+          v-for="(filter, filterIndex) in filters"
+          v-text="capitalizeFirstLetter(filter)"
+          :key="'filter' + filterIndex"
+          :value="filter"
+        ></option>
+      </select>
     </div>
 
-    <lightbox :images="images" :directory="''" ref="lightbox"></lightbox>
+    <div class="d-flex flex-column justify-content-center align-items-center flex-sm-row justify-content-sm-between flex-wrap">
+      <template v-for="(image, imageIndex) in images">
+        <img
+          v-if="selectedFilter === 'all' || selectedFilter === image.filter"
+          :key="'image' + imageIndex"
+          :src="image.thumbnail || image.name"
+          :alt="image.alt"
+          class="img-fluid img-thumbnail mb-3"
+          @click="showLightbox(image.name)"
+        />
+      </template>
+    </div>
+
+    <lightbox
+      :images="images"
+      :directory="''"
+      :filter="selectedFilter"
+      ref="lightbox"
+    ></lightbox>
   </div>
 </template>
 
@@ -31,12 +52,16 @@ module.exports = {
     return {
       loading: true,
       networkError: false,
-      allFiles: []
+      allFiles: [],
+      selectedFilter: 'all'
     };
   },
   methods: {
     showLightbox: function (imageName) {
       this.$refs.lightbox.show(imageName);
+    },
+    capitalizeFirstLetter: function (phrase) {
+      return phrase.charAt(0).toUpperCase() + phrase.slice(1);
     },
     getGitTree: function () {
       this.loading = true;
@@ -121,7 +146,6 @@ module.exports = {
             thumbnail = thumb.path;
           }
         });
-
         images.push({
           name: src,
           thumbnail: thumbnail,
@@ -132,6 +156,13 @@ module.exports = {
       }.bind(this));
 
       return images;
+    },
+    filters: function () {
+      let filters = [];
+      this.images.forEach(function (image) {
+        filters.push(image.filter);
+      });
+      return new Set(filters);
     }
   },
   created: function () {
