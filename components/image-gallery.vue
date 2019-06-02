@@ -69,6 +69,9 @@ module.exports = {
       return images;
     },
     imageFiles: function () {
+      if (this.allFiles.length < 1) {
+        return [];
+      }
       return this.allFiles.filter(function (file) {
         return !!(
           file.path.startsWith('gallery/') &&
@@ -106,13 +109,17 @@ module.exports = {
           filter = src.split('/')[1];
         }
 
-        let thumbnail = this.imageFiles.find(function (thumb) {
+        let thumbnail = false;
+
+        this.imageFiles.forEach(function (thumb) {
           // Mr._Cool_th.jpg
           let thumbFilename = thumb.path.split('/')[thumb.path.split('/').length - 1];
           // Mr. Cool th
           let thumbAlt = thumbFilename.split('.').slice(0, -1).join('.').split('_').join(' ');
           // mr. cool th === mr. cool th
-          return thumbAlt.toLowerCase() === alt.toLowerCase() + ' th';
+          if (thumbAlt.toLowerCase() === alt.toLowerCase() + ' th') {
+            thumbnail = thumb.path;
+          }
         });
 
         images.push({
@@ -122,7 +129,7 @@ module.exports = {
           filter: filter,
           id: src
         });
-      });
+      }.bind(this));
 
       return images;
     }
