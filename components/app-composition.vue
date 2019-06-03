@@ -2,7 +2,26 @@
   <div>
     <bs-header></bs-header>
     <div class="container">
-      <image-gallery :load-data="true"></image-gallery>
+      <div
+        v-if="networkError"
+        class="alert alert-danger alert-dismissible"
+        role="alert"
+      >
+        There was an error on the server during a request for data.
+        <strong>Please reload the page.</strong>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+          @click="networkError = false"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <loading-spinner v-if="loading"></loading-spinner>
+
+      <image-gallery :all-files="allFiles"></image-gallery>
       <hr id="about" />
       <about-cole></about-cole>
       <hr id="contact" />
@@ -15,10 +34,40 @@
 module.exports = {
   name: 'app-composition',
   components: {
+    'loading-spinner': httpVueLoader('components/loading-spinner.vue'),
     'about-cole': httpVueLoader('components/about-cole.vue'),
     'bs-header': httpVueLoader('components/bs-header.vue'),
     'contact-info': httpVueLoader('components/contact-info.vue'),
     'image-gallery': httpVueLoader('components/image-gallery.vue')
+  },
+  data: function () {
+    return {
+      loading: true,
+      networkError: false,
+      allFiles: []
+    };
+  },
+  methods: {
+    getGitTree: function () {
+      this.loading = true;
+      axios.get('https://api.github.com/repos/TheJaredWilcurt/cole-cat/git/trees/master?recursive=1')
+        .then((response) => {
+          this.allFiles = response.data.tree;
+          this.networkError = false;
+          this.loading = false;
+        })
+        .catch((err) => {
+          if (err) {
+            this.networkError = true;
+          }
+          this.loading = false;
+        });
+    }
+  },
+  created: function () {
+    if (!this.allFiles.length) {
+      this.getGitTree();
+    }
   }
 };
 </script>

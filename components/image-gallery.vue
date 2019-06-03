@@ -2,7 +2,6 @@
   <div>
     <h1 class="mb-5">Art Gallery</h1>
 
-
     <div class="mb-4">
       <strong>Categories:</strong>
       <select v-model="selectedFilter">
@@ -42,17 +41,13 @@
 module.exports = {
   name: 'image-gallery',
   props: {
-    loadData: {
-      type: Boolean,
-      required: false,
-      default: true
+    allFiles: {
+      type: Array,
+      required: true
     }
   },
   data: function () {
     return {
-      loading: true,
-      networkError: false,
-      allFiles: [],
       selectedFilter: 'all'
     };
   },
@@ -62,41 +57,10 @@ module.exports = {
     },
     capitalizeFirstLetter: function (phrase) {
       return phrase.charAt(0).toUpperCase() + phrase.slice(1);
-    },
-    getGitTree: function () {
-      this.loading = true;
-      axios.get('https://api.github.com/repos/TheJaredWilcurt/cole-cat/git/trees/master?recursive=1')
-        .then((response) => {
-          this.allFiles = response.data.tree;
-          this.networkError = false;
-          this.loading = false;
-        })
-        .catch((err) => {
-          if (err) {
-            this.networkError = true;
-          }
-          this.loading = false;
-        });
     }
   },
   computed: {
-    // Use generated dummy data when not hitting GitHub API
-    fakeImages: function () {
-      let images = [];
-      for (let i = 0; i < 20; i++) {
-        images.push({
-          name: 'gallery/paintings/My_Golden_Heart.jpg',
-          alt: 'My Golden Heart',
-          filter: 'paintings',
-          id: 'heart'
-        });
-      }
-      return images;
-    },
     imageFiles: function () {
-      if (this.allFiles.length < 1) {
-        return [];
-      }
       return this.allFiles.filter(function (file) {
         return !!(
           file.path.startsWith('gallery/') &&
@@ -106,10 +70,6 @@ module.exports = {
       });
     },
     images: function () {
-      if (!this.loadData) {
-        return this.fakeImages;
-      }
-
       let images = [];
 
       this.imageFiles.forEach(function (file) {
@@ -163,11 +123,6 @@ module.exports = {
         filters.push(image.filter);
       });
       return new Set(filters);
-    }
-  },
-  created: function () {
-    if (this.loadData) {
-      this.getGitTree();
     }
   }
 };
