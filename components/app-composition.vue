@@ -2,23 +2,10 @@
   <div>
     <bs-header></bs-header>
     <div class="container">
-      <div
+      <network-error
         v-if="networkError"
-        class="alert alert-danger alert-dismissible"
-        role="alert"
-      >
-        There was an error on the server during a request for data.
-        <strong>Please reload the page.</strong>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-          @click="networkError = false"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+        @dismissed="networkError = false"
+      ></network-error>
       <loading-spinner v-if="loading"></loading-spinner>
 
       <image-gallery :all-files="allFiles"></image-gallery>
@@ -34,6 +21,7 @@
 module.exports = {
   name: 'app-composition',
   components: {
+    'network-error': httpVueLoader('components/network-error.vue'),
     'loading-spinner': httpVueLoader('components/loading-spinner.vue'),
     'about-cole': httpVueLoader('components/about-cole.vue'),
     'bs-header': httpVueLoader('components/bs-header.vue'),
