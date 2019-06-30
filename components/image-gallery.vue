@@ -4,7 +4,7 @@
 
     <div class="mb-4">
       <strong>Categories:</strong>
-      <select v-model="selectedFilter">
+      <select v-model="selectedFilter" class="custom-select w-auto">
         <option value="all">All</option>
         <option
           v-for="(filter, filterIndex) in filters"
