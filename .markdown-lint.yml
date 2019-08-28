@@ -1,0 +1,7 @@
+---
+extends: ./node_modules/tjw-markdown-lint-rules/tjwmarkdownlint.yml
+# Override the proper-names rule to enforce capitalization of your project's name and other proper nouns
+proper-names:
+  names:
+    - JavaScript
+    - Cole-Cat

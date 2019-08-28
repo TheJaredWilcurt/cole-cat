@@ -6,12 +6,15 @@
   "scripts": {
     "start": "node node_modules/npm-free-server/dist/server.js",
     "lint": "eslint components/**/*.vue",
-    "fix": "npm run lint -- --fix"
+    "fix": "npm run lint -- --fix",
+    "markdown-lint": "markdownlint -i './node_modules/**/*' --config ./.markdown-lint.yml ./**/*.md"
   },
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^5.9.0",
-    "eslint-plugin-vue": "^4.7.1",
-    "npm-free-server": "^1.1.0"
+    "eslint": "^6.2.2",
+    "eslint-plugin-vue": "^5.2.3",
+    "markdownlint-cli": "^0.18.0",
+    "npm-free-server": "^1.1.0",
+    "tjw-markdownlint-rules": "^1.0.0"
   }
 }

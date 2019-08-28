@@ -1,2 +1,3 @@
-# cole-cat
+# Cole-Cat
+
 Art site
