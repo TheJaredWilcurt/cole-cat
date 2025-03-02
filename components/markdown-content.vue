@@ -33,18 +33,18 @@ module.exports = {
     getMarkdown: function () {
       this.loading = true;
       axios.get(this.file)
-        .then(function (response) {
+        .then((response) => {
           this.content = marked(response.data);
           this.networkError = false;
-        }.bind(this))
-        .catch(function (err) {
+        })
+        .catch((err) => {
           if (err) {
             this.networkError = true;
           }
-        }.bind(this))
-        .finally(function () {
+        })
+        .finally(() => {
           this.loading = false;
-        }.bind(this));
+        });
     }
   },
   created: function () {
